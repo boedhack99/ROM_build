@@ -18,13 +18,13 @@ on:
 env:
   ROM_name: LineageOS
   ROM_ver: LineageOS-18.1
-  ROM_url: https://github.com/LineageOS/manifest.git -b lineage-18.1
+  ROM_url: https://github.com/LineageOS/android.git -b lineage-18.1
   device: mojito
   DT_url: https://github.com/boedhack99/dxm -b R
   DT_path: device/xiaomi/mojito
-  KT_url: https://github.com/MumetNgoding/Kernel_Xiaomi_Mojito -b silont
+  KT_url: https://github.com/PixelExperience-Devices/kernel_xiaomi_mojito -b eleven
   KT_path: kernel/xiaomi/mojito
-  VT_url: https://github.com/boedhack/vendor_mojito.git -b R
+  VT_url: https://github.com/boedhack/vendor_mojito -b R
   VT_path: vendor/xiaomi/mojito
   BT_url: https://github.com/LineageOS/android_hardware_qcom_bootctrl -b lineage-18.1-caf
   BT_path: hardware/qcom-caf/bootctrl
@@ -57,8 +57,6 @@ jobs:
           sudo -E apt-get clean
           sudo -E apt-get -qq update
           sudo -E apt-get -qq install curl libstdc++6 git wget repo rsync aria2
-          git config --global user.name "boedhack99"
-          git config --global user.email "boedhack@gmail.com"
           git clone https://github.com/akhilnarang/scripts --depth=1 --single-branch
           cd scripts
           sudo -E bash setup/android_build_env.sh
@@ -118,7 +116,7 @@ jobs:
           extra-config: |
             keep_comments_cpp = true
 
-      - name: Building ${{env.Rec_name}}
+      - name: Building ${{env.ROM_name}}
         run: |
           cd ${{env.WorkSpace}}
           . build/envsetup.sh
